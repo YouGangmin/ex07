@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {Row, Col, Button, Form} from 'react-bootstrap'
+import {Row, Col, Button, Form, InputGroup, Card} from 'react-bootstrap'
+import {BsSearch} from 'react-icons/bs'
 import axios from 'axios'
 import Book from './Book';
 
@@ -15,7 +16,7 @@ const BookPage = () => {
         const url = "https://dapi.kakao.com/v3/search/book?target=title";
         const config = {
             headers: {"Authorization": "KakaoAK b80880fbde422de3fd9b4a4e67c9bb54"},
-            params: {"query": query, "size": 6, "page": page}
+            params: {"query": query, "size": 8, "page": page}
         }
         setLoading(true);
         const result = await axios(url, config);
@@ -44,10 +45,13 @@ const BookPage = () => {
         <Row className='justify-content-center mx-2 my-5'>
             <h1 className='text-center mb-5'>도서검색</h1>
             <Row className='my-2'>
-                <Col xs={6} md={2}>
+                <Col>
                     <Form onSubmit={ onSearch }>
-                        <Form.Control value={query} placeholder='검색어'
-                            onChange={(e)=>setQuery(e.target.value)}/>
+                        <InputGroup>
+                            <Form.Control value={query} placeholder='검색어'
+                                onChange={(e)=>setQuery(e.target.value)}/>
+                            <InputGroup.Text><BsSearch/></InputGroup.Text>
+                        </InputGroup>
                     </Form>
                 </Col>
                 <Col>검색수: {total}건</Col>
@@ -55,12 +59,16 @@ const BookPage = () => {
             <hr/>
             <Row className='my-2 justify-content-center'>
                 {books.map(book=>
-                    <Col key={book.isbn} className='m-2 box'>
-                        <div><img src={!book.thumbnail ? 'http://via.placeholder.com/120x170':book.thumbnail}/></div>
-                        <div className="ellipsis">{book.title}</div>
-                        <div>{book.fmtPrice}원</div>
-                        <div class="ellipsis">{book.authors}</div>
-                        <Book book={book}/>
+                    <Col key={book.isbn} className="my-2" md={3} xs={6}>
+                        <Card>
+                            <Card.Body>
+                                <div><img src={!book.thumbnail ? 'http://via.placeholder.com/120x170':book.thumbnail}/></div>
+                                <div className="ellipsis">{book.title}</div>
+                                <div>{book.fmtPrice}원</div>
+                                <div class="ellipsis">{book.authors}</div>
+                                <Book book={book}/>
+                            </Card.Body>
+                        </Card>
                     </Col>
                 )}
             </Row>

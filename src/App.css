@@ -22,14 +22,3 @@
   color: gray;
   padding: 5px 20px 10px 0px;
 }
-
-.box {
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 10px 0px;
-}
-
-.book {
-  font-family: 'GmarketSansMedium';
-  font-size: 0.8rem;
-}

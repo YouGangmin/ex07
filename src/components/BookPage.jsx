@@ -45,7 +45,7 @@ const BookPage = () => {
         <Row className='justify-content-center mx-2 my-5'>
             <h1 className='text-center mb-5'>도서검색</h1>
             <Row className='my-2'>
-                <Col>
+                <Col md={4} xs={6}>
                     <Form onSubmit={ onSearch }>
                         <InputGroup>
                             <Form.Control value={query} placeholder='검색어'
@@ -65,7 +65,7 @@ const BookPage = () => {
                                 <div><img src={!book.thumbnail ? 'http://via.placeholder.com/120x170':book.thumbnail}/></div>
                                 <div className="ellipsis">{book.title}</div>
                                 <div>{book.fmtPrice}원</div>
-                                <div class="ellipsis">{book.authors}</div>
+                                <div className="ellipsis">{book.authors}</div>
                                 <Book book={book}/>
                             </Card.Body>
                         </Card>

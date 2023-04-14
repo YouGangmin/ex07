@@ -14,7 +14,11 @@ const Book = ({book}) => {
                 보기
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal 
+                show={show} 
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}>
                 <Modal.Body>
                     <Card>
                         <Card.Body className='book'>
